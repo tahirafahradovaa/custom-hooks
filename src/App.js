@@ -1,24 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import { useEffect, useState } from "react";
+import "./App.css";
+import useInterval from "./hooks/useInterval";
+import useWindowSize from "./hooks/useWindowSize";
+import Example from "./memo/Example";
 
 function App() {
+  const [delay, setdelay] = useState(1000);
+  const [func, setfunc] = useState(() => {
+    return () => console.log("hi");
+  });
+  const [width, height] = useWindowSize();
+  // useInterval(func, delay);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <h1>
+        {" "}
+        width is {width}. height is {height}
+      </h1>
+      <h1>hi</h1>
+      <Example />
+    </>
   );
 }
 
